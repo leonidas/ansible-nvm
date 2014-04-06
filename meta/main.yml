@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Jarno Keskikangas
+  description: Install nvm and Node.js for the remote user.
+  company: Leonidas
+  license: BSD
+  min_ansible_version: 1.4
+  platforms:
+  - name: Ubuntu
+    versions:
+     - precise
+     - quantal
+     - raring
+     - saucy
+  - name: Debian
+    versions:
+     - wheezy
+  categories:
+  - development
+  - packaging
+  - web
+
+dependencies: []
