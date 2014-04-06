@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Jarno Keskikangas
-  description: Install nvm and Node.js for the remote user.
+  description: Install nvm and Node.js.
   company: Leonidas
   license: BSD
   min_ansible_version: 1.4

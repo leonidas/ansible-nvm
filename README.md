@@ -1,7 +1,7 @@
 nvm
 ========
 
-Install nvm and Node.js for the remote user.
+Install nvm and Node.js.
 
 Requirements
 ------------
@@ -29,7 +29,7 @@ Example Playbook
           nvm:
             user: deploy
             version: v0.4.0
-            node_version: v0.10
+            node_version: '0.10'
 
 License
 -------
@@ -39,4 +39,5 @@ BSD
 Author Information
 ------------------
 
-Jarno Keskikangas [@pyykkis81](https://twitter.com/pyykkis81)
+Jarno Keskikangas  
+[@pyykkis81](https://twitter.com/pyykkis81)
