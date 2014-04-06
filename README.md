@@ -39,5 +39,4 @@ BSD
 Author Information
 ------------------
 
-Jarno Keskikangas  
-[@pyykkis81](https://twitter.com/pyykkis81)
+Jarno Keskikangas
