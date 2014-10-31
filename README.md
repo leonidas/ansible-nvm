@@ -28,7 +28,7 @@ Example Playbook
         - role: nvm
           nvm:
             user: deploy
-            version: v0.4.0
+            version: v0.17.3
             node_version: '0.10'
 
 License
