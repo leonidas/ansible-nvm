@@ -25,7 +25,8 @@
 - name: Install {{ nvm.node_version }}
   command: nvm install {{ nvm.node_version }}
   register: nvm_install_result
-  changed_when: "'is already installed.' not in nvm_install_result.stdout"
+  changed_when: False
+  ignore_errors: True
   tags: nvm
 
 - name: Check if {{ nvm.node_version }} is the default node version
