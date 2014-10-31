@@ -11,7 +11,7 @@
 - name: Install nvm
   sudo: yes
   sudo_user: "{{ nvm.user }}"
-  git: repo=git://github.com/creationix/nvm.git dest=~/.nvm version={{ nvm.version }}
+  git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version={{ nvm.version }} accept_hostkey=True
   tags: nvm
 
 - name: Source nvm in ~/.profile
