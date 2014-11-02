@@ -1,12 +1,12 @@
 ---
-# - name: Install dependencies
-#   apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
-#   with_items:
-#     - git
-#     - curl
-#     - build-essential
-#     - libssl-dev
-#   tags: nvm
+- name: Install dependencies
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  with_items:
+    - git
+    - curl
+    - build-essential
+    - libssl-dev
+  tags: nvm
 
 - name: Install nvm
   sudo: yes
@@ -38,4 +38,8 @@
 - name: Set default node version to {{ nvm.node_version }}
   command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
   when: nvm_check_default|failed
+  tags: nvm
+
+- name: Reload the shell
+  command: sudo -iu {{ nvm.user }} source ~/.nvm/nvm.sh
   tags: nvm
