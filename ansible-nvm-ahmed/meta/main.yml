@@ -1,7 +1,0 @@
----
-galaxy_info:
-  author: Ahmed Nuaman (ahmed@ahmednuaman.com)
-  description: This is just a placeholder of the original repo at leonidas/ansible-nvm
-  license: BSD
-  min_ansible_version: 1.2
-dependencies: []
