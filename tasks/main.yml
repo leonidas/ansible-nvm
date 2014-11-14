@@ -28,7 +28,6 @@
     dest=~/.profile
     line="source ~/.nvm/nvm.sh"
   tags: nvm
-  when: not nvm_path.stat.exists
 
 - name: Check for current node version
   sudo: yes
