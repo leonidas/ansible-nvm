@@ -47,7 +47,15 @@
   tags: nvm
   when: nvm_node_version.stdout.find(nvm.node_version) == -1
 
+- name: Search npm binary
+  sudo: yes
+  sudo_user: "{{ nvm.user }}"
+  command: sudo -iu {{ nvm.user }} which npm
+  register: npm_executable
+  ignore_errors: yes
+  changed_when: false
+
 - name: Install general package
   sudo_user: "{{ nvm.user }}"
-  npm: name={{ item }} global=yes executable=~/.nvm/current/bin/npm
+  npm: name={{ item }} global=yes executable={{ npm_executable.stdout }}
   with_items: nvm.packages
