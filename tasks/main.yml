@@ -34,6 +34,8 @@
   sudo_user: "{{ nvm.user }}"
   command: sudo -iu {{ nvm.user }} node -v
   register: nvm_node_version
+  ignore_errors: yes
+  changed_when: false
 
 - name: Install node
   command: sudo -iu {{ nvm.user }} nvm install {{ nvm.node_version }}
