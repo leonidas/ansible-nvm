@@ -45,3 +45,8 @@
   command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
   tags: nvm
   when: nvm_node_version.stdout.find(nvm.node_version) == -1
+
+- name: Install general package
+  sudo_user: "{{ nvm.user }}"
+  npm: name={{ item }} global=yes executable=~/.nvm/current/bin/npm
+  with_items: nvm.packages
