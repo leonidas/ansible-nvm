@@ -32,25 +32,25 @@
 - name: Check for current node version
   sudo: yes
   sudo_user: "{{ nvm.user }}"
-  command: sudo -iu {{ nvm.user }} node -v
+  command: sudo -iu {{ nvm.user }} source ~/.nvm/nvm.sh && node -v
   register: nvm_node_version
   ignore_errors: yes
   changed_when: false
 
 - name: Install node
-  command: sudo -iu {{ nvm.user }} nvm install {{ nvm.node_version }}
+  command: sudo -iu {{ nvm.user }} source ~/.nvm/nvm.sh && nvm install {{ nvm.node_version }}
   tags: nvm
   when: nvm_node_version.stdout.find(nvm.node_version) == -1
 
 - name: Set default node version to installed node
-  command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
+  command: sudo -iu {{ nvm.user }} source ~/.nvm/nvm.sh && nvm alias default {{ nvm.node_version }}
   tags: nvm
   when: nvm_node_version.stdout.find(nvm.node_version) == -1
 
 - name: Search npm binary
   sudo: yes
   sudo_user: "{{ nvm.user }}"
-  command: sudo -iu {{ nvm.user }} which npm
+  command: sudo -iu {{ nvm.user }} source ~/.nvm/nvm.sh && which npm
   register: npm_executable
   ignore_errors: yes
   changed_when: false
