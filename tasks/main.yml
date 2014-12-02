@@ -21,11 +21,11 @@
   tags: nvm
   when: not nvm_path.stat.exists
 
-- name: Source nvm in ~/.profile
+- name: Source nvm
   sudo: yes
   sudo_user: "{{ nvm.user }}"
   lineinfile: >
-    dest=~/.profile
+    dest={{ nvm.profile_file }}
     line="source ~/.nvm/nvm.sh"
   tags: nvm
 

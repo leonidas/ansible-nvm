@@ -1,6 +1,7 @@
 ---
 nvm:
-  user: '{{ ansible_ssh_user }}'
-  version: v0.17.3
+  user: 'vagrant'
+  version: v0.20.0
   node_version: '0.10'
+  profile_file: '~/.profile'
   packages: []
