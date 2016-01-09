@@ -19,7 +19,7 @@
   sudo_user: "{{ nvm.user }}"
   lineinfile: >
     dest=~/.profile
-    line="source ~/.nvm/nvm.sh"
+    line=". ~/.nvm/nvm.sh"
     create=yes
   tags: nvm
 
