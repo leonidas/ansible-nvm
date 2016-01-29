@@ -6,17 +6,16 @@
     - curl
     - build-essential
     - libssl-dev
+  become: true
   tags: nvm
 
 - name: Install nvm
-  sudo: yes
-  sudo_user: "{{ nvm.user }}"
+  become: "{{ nvm.user }}"
   git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version={{ nvm.version }}
   tags: nvm
 
 - name: Source nvm in ~/.profile
-  sudo: yes
-  sudo_user: "{{ nvm.user }}"
+  become: "{{ nvm.user }}"
   lineinfile: >
     dest=~/.profile
     line="source ~/.nvm/nvm.sh"
@@ -24,19 +23,28 @@
   tags: nvm
 
 - name: Install {{ nvm.node_version }}
-  command: sudo -iu {{ nvm.user }} nvm install {{ nvm.node_version }}
+  shell: source ~/.profile && nvm install {{ nvm.node_version }}
+  args:
+    executable: /bin/bash
+  become: "{{ nvm.user }}"
   register: nvm_install_result
   changed_when: "'is already installed.' not in nvm_install_result.stdout"
   tags: nvm
 
 - name: Check if {{ nvm.node_version }} is the default node version
-  shell: sudo -iu {{ nvm.user }} nvm ls | grep -e 'default -> {{ nvm.node_version }}'
+  shell: source ~/.profile && nvm ls | grep -e 'default -> {{ nvm.node_version }}'
+  args:
+    executable: /bin/bash
+  become: "{{ nvm.user }}"
   register: nvm_check_default
   changed_when: False
   ignore_errors: True
   tags: nvm
 
 - name: Set default node version to {{ nvm.node_version }}
-  command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
+  shell: source ~/.profile && nvm alias default {{ nvm.node_version }}
+  args:
+    executable: /bin/bash
+  become: "{{ nvm.user }}"
   when: nvm_check_default|failed
   tags: nvm
