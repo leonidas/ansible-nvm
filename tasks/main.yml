@@ -33,10 +33,10 @@
   shell: sudo -iu {{ nvm.user }} nvm ls | grep -e 'default -> {{ nvm.node_version }}'
   register: nvm_check_default
   changed_when: False
-  ignore_errors: True
+  failed_when: False
   tags: nvm
 
 - name: Set default node version to {{ nvm.node_version }}
   command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
-  when: nvm_check_default|failed
+  when: nvm_check_default.rc != 0
   tags: nvm
