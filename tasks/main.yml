@@ -6,7 +6,9 @@
     - curl
     - build-essential
     - libssl-dev
-  tags: nvm
+  tags:
+    - nvm
+    - nvm-deps
 
 - name: Install nvm
   sudo: yes
