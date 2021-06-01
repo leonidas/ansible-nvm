@@ -38,5 +38,5 @@
 
 - name: Set default node version to {{ nvm.node_version }}
   command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
-  when: nvm_check_default|failed
+  when: nvm_check_default.failed
   tags: nvm
